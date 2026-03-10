@@ -79,6 +79,39 @@
             background-color: #4ecadc;
             transform: scale(1.05); /* Dá uma leve crescidinha ao passar o mouse */
         }
+        /* --- ESTILOS DE ERRO E ANIMAÇÃO --- */
+        
+        /* Como o texto de erro se parece (vermelho, pequeno e escondido no início) */
+        #msg-erro {
+            color: #ff6b6b;
+            font-size: 13px;
+            margin-top: -15px;
+            margin-bottom: 15px;
+            text-shadow: none;
+            display: none; /* A mágica: começa invisível */
+            text-align: left;
+            padding-left: 5px;
+        }
+
+        /* Classe que o JavaScript vai injetar no input quando der erro */
+        .input-erro {
+            border: 2px solid #ff6b6b !important;
+            box-shadow: 0 0 8px rgba(255, 107, 107, 0.6) !important;
+        }
+
+        /* A Animação de tremer a caixa (Keyframes) */
+        @keyframes tremer {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-6px); }
+            50% { transform: translateX(6px); }
+            75% { transform: translateX(-6px); }
+            100% { transform: translateX(0); }
+        }
+
+        /* A classe que aciona a animação de tremer e dura 0.3 segundos */
+        .tremer {
+            animation: tremer 0.3s ease-in-out;
+        }
     </style>
 </head>
 <body>
@@ -87,8 +120,10 @@
         <h2>🎬 CineMestre Login</h2>
         <p>Identifique-se para reservar assentos</p>
         
-        <input type="text" id="input-nome" placeholder="Digite seu nome">
-        <br>
+        <input type="text" id="input-nome" placeholder="Digite seu nome"><br>
+
+        <p id="msg-erro">Por favor, digite o seu nome para entrar!</p>
+
         <button id="btn-entrar">Entrar no Cinema</button>
     </div>
 

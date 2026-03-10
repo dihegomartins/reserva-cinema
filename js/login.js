@@ -1,26 +1,39 @@
-// Pega os elementos da tela
 const inputNome = document.getElementById('input-nome');
 const btnEntrar = document.getElementById('btn-entrar');
+const msgErro = document.getElementById('msg-erro'); // Puxamos o texto de erro do HTML
 
 btnEntrar.addEventListener('click', function() {
     const nome = inputNome.value.trim();
 
     if (nome === "") {
-        alert("Por favor, digite o seu nome para entrar!");
-        return;
+        // ADEUS ALERT! Agora fazemos o visual agir:
+        msgErro.style.display = 'block'; // Mostra o texto vermelho
+        inputNome.classList.add('input-erro'); // Borda vermelha
+        inputNome.classList.add('tremer'); // Faz a caixa tremer!
+
+        // Tira a classe 'tremer' depois de 300ms (tempo da animação acabar)
+        // Isso serve para a caixa poder tremer de novo se o usuário clicar sem digitar nada mais uma vez.
+        setTimeout(() => {
+            inputNome.classList.remove('tremer');
+        }, 300);
+
+        return; // Para a função aqui e não deixa logar
     }
 
-    // Salva o nome do usuário no navegador (LocalStorage)
+    // Se tiver nome, loga normal!
     localStorage.setItem('usuarioLogado', nome);
-
-    // Redireciona para a página do cinema (o seu index.html atual)
     window.location.href = "index.html"; 
 });
 
-// Adiciona um "ouvinte" para o teclado dentro do campo de texto
+// UX DE MESTRE: Se o usuário começar a digitar, nós limpamos o erro da tela!
+inputNome.addEventListener('input', function() {
+    msgErro.style.display = 'none'; // Esconde o texto
+    inputNome.classList.remove('input-erro'); // Tira a borda vermelha
+});
+
+// O suporte ao Enter que você fez antes
 inputNome.addEventListener('keydown', function(event) {
-    // Verifica se a tecla apertada foi o 'Enter'
     if (event.key === 'Enter') {
-        btnEntrar.click(); // Simula um clique fantasma no botão de entrar!
+        btnEntrar.click();
     }
 });

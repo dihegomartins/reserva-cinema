@@ -1,0 +1,24 @@
+{
+  "name": "reserva-cinema",
+  "version": "1.0.0",
+  "description": "![Status do Projeto](https://img.shields.io/badge/Status-Concluído-brightgreen)\r ![Tecnologias](https://img.shields.io/badge/Stack-HTML5%20|%20CSS3%20|%20JavaScript-blue)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dihegomartins/reserva-cinema.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/dihegomartins/reserva-cinema/issues"
+  },
+  "homepage": "https://github.com/dihegomartins/reserva-cinema#readme",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}

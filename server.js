@@ -2,16 +2,24 @@ const express = require('express');
 const app = express();
 const port = 3000;
 
-// Diz ao Express para servir os arquivos da sua pasta atual (HTML, CSS, JS)
 app.use(express.static('./'));
 
-// Rota principal: Quando alguém acessar o endereço do servidor
-app.get('/', (req, res) => {
-    console.log("Alguém acessou a página inicial!");
+// --- NOSSA PRIMEIRA API ---
+app.get('/api/frase', (req, res) => {
+    const frases = [
+        "Que a Força esteja com você. (Star Wars)",
+        "Eu vou fazer uma proposta que ele não poderá recusar. (O Padrão)",
+        "Hasta la vista, baby. (Exterminador do Futuro)",
+        "Prepare-se. O inverno está chegando. (Game of Thrones)",
+        "Existem derrotas, mas não existe o sofrimento. (Matrix)"
+    ];
+    
+    const sorteada = frases[Math.floor(Math.random() * frases.length)];
+    
+    // O servidor responde com um objeto JSON (o padrão de ouro das APIs)
+    res.json({ texto: sorteada });
 });
 
-// Liga o servidor
 app.listen(port, () => {
     console.log(`🚀 Servidor rodando em http://localhost:${port}`);
-    console.log("Pressione Ctrl + C para desligar o servidor");
 });

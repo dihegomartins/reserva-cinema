@@ -59,3 +59,21 @@ inputNome.addEventListener('keydown', function(event) {
         btnEntrar.click();
     }
 });
+
+// Função que busca dados na nossa API do Node.js
+async function buscarFraseDoDia() {
+    try {
+        // O comando 'fetch' faz a requisição para o nosso servidor
+        const resposta = await fetch('/api/frase');
+        const dados = await JSON.parse(await resposta.text());
+        
+        // Vamos colocar essa frase no lugar daquele texto fixo de boas-vindas
+        const titulo = document.querySelector('.login-container p');
+        titulo.innerText = `"${dados.texto}"`;
+    } catch (erro) {
+        console.error("Erro ao buscar frase:", erro);
+    }
+}
+
+// Chama a função assim que a página abre
+buscarFraseDoDia();

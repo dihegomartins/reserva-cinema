@@ -16,3 +16,11 @@ btnEntrar.addEventListener('click', function() {
     // Redireciona para a página do cinema (o seu index.html atual)
     window.location.href = "index.html"; 
 });
+
+// Adiciona um "ouvinte" para o teclado dentro do campo de texto
+inputNome.addEventListener('keydown', function(event) {
+    // Verifica se a tecla apertada foi o 'Enter'
+    if (event.key === 'Enter') {
+        btnEntrar.click(); // Simula um clique fantasma no botão de entrar!
+    }
+});

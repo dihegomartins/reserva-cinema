@@ -1,19 +1,25 @@
-// ==========================================
-// ROLETA DE FUNDOS DE CINEMA (Background Dinâmico)
-// ==========================================
-const imagensFundo = [
-    "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=1920&auto=format&fit=crop", // Cinema Clássico
-    "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?q=80&w=1920&auto=format&fit=crop", // Espaço / Interestelar
-    "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=1920&auto=format&fit=crop", // Matrix / Cyberpunk
-    "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=1920&auto=format&fit=crop", // Fantasia / Épico
-    "https://images.unsplash.com/photo-1449844908441-8829872d2607?q=80&w=1920&auto=format&fit=crop"  // Ação / Cidade Sombria (Batman)
-];
+// 1. Função para buscar os filmes da NOSSA API no Node.js
+async function carregarFundoDinamico() {
+    try {
+        const resposta = await fetch('/api/filmes-populares');
+        if (!resposta.ok) throw new Error('Erro na API');
 
-// Sorteia um número aleatório entre 0 e o tamanho do array
-const indiceSorteado = Math.floor(Math.random() * imagensFundo.length);
+        const listaImagens = await resposta.json();
+        
+        // Sorteia uma imagem da lista que veio do servidor
+        const sorteada = listaImagens[Math.floor(Math.random() * listaImagens.length)];
+        
+        // Aplica ao fundo da página
+        document.body.style.backgroundImage = `url('${sorteada}')`;
 
-// Aplica a imagem sorteada direto no 'body' do HTML
-document.body.style.backgroundImage = `url('${imagensFundo[indiceSorteado]}')`;
+    } catch (erro) {
+        console.warn("Usando fundo padrão de emergência:", erro);
+        document.body.style.backgroundImage = "url('https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=1920&auto=format&fit=crop')";
+    }
+}
+
+// 2. Chama a função para rodar assim que carregar
+carregarFundoDinamico();
 
 // ==========================================
 // LÓGICA DE LOGIN E VALIDAÇÃO

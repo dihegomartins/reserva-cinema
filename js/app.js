@@ -1,4 +1,21 @@
 // ==========================================
+// VERIFICAÇÃO DE LOGIN
+// ==========================================
+// Tenta ler o nome do usuário no LocalStorage
+const usuario = localStorage.getItem('usuarioLogado');
+
+// Se não tiver nome salvo, manda a pessoa de volta para a tela de login
+if (!usuario) {
+    window.location.href = "login.html";
+} else {
+    // Se tiver nome, mostra uma mensagem personalizada na tela
+    document.getElementById('msg-boas-vindas').innerText = `Bem-vindo(a), ${usuario}!`;
+}
+
+// ... o resto do seu código de configuração geral, Model, View e Controller continua aqui embaixo ...
+
+
+// ==========================================
 // CONFIGURAÇÕES GERAIS
 // ==========================================
 const PRECO_INGRESSO = 25.00;

@@ -62,16 +62,17 @@ inputNome.addEventListener('keydown', function(event) {
 
 // Função que busca dados na nossa API do Node.js
 async function buscarFraseDoDia() {
+    const titulo = document.querySelector('.login-container p');
     try {
-        // O comando 'fetch' faz a requisição para o nosso servidor
         const resposta = await fetch('/api/frase');
-        const dados = await JSON.parse(await resposta.text());
+        if (!resposta.ok) throw new Error(); // Se o servidor não responder...
         
-        // Vamos colocar essa frase no lugar daquele texto fixo de boas-vindas
-        const titulo = document.querySelector('.login-container p');
+        const dados = await resposta.json();
         titulo.innerText = `"${dados.texto}"`;
     } catch (erro) {
-        console.error("Erro ao buscar frase:", erro);
+        // Se der erro (como no GitHub Pages), ele cai aqui e usa uma frase fixa
+        console.log("Servidor offline, usando frase padrão.");
+        titulo.innerText = "Prepare o seu coração para grandes emoções!";
     }
 }
 

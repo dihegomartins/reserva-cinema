@@ -5,31 +5,79 @@
     <title>Login - CineMestre</title>
     <link rel="stylesheet" href="css/style.css"> 
     <style>
-        /* Estilos específicos para a tela de login */
+        /* Fundo da página inteira */
+        body {
+            /* Imagem de cinema em alta resolução */
+            background-image: url('https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=1920&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh; /* Ocupa 100% da altura da tela */
+            margin: 0;
+            display: flex;
+            justify-content: center; /* Centraliza a caixa na horizontal */
+            align-items: center;     /* Centraliza a caixa na vertical */
+            font-family: Arial, sans-serif;
+            color: white;
+        }
+
+        /* O Efeito Glassmorphism (Vidro Fosco) */
         .login-container {
-            background-color: #333;
+            background: rgba(255, 255, 255, 0.1); /* Fundo branco quase 100% transparente */
+            backdrop-filter: blur(12px); /* A mágica do desfoque no fundo */
+            -webkit-backdrop-filter: blur(12px); /* Suporte para navegadores da Apple */
             padding: 40px;
-            border-radius: 10px;
+            border-radius: 15px; /* Bordas mais redondinhas */
             text-align: center;
-            margin-top: 100px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.6); /* Sombra escura para destacar o vidro */
+            border: 1px solid rgba(255, 255, 255, 0.2); /* Borda clarinha para simular o reflexo da luz no vidro */
+            width: 320px;
         }
+
+        /* Dando um sombreado nos textos para eles não sumirem no fundo */
+        .login-container h2 {
+            margin-top: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+        }
+
+        .login-container p {
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+            margin-bottom: 25px;
+        }
+
+        /* Melhorando o visual do Input e do Botão */
         .login-container input {
-            padding: 10px;
-            margin: 10px 0;
-            width: 80%;
-            border-radius: 5px;
+            padding: 12px;
+            margin-bottom: 20px;
+            width: 100%;
+            border-radius: 8px;
             border: none;
+            background: rgba(255, 255, 255, 0.9);
+            box-sizing: border-box; /* Garante que o input não vaze da caixa */
+            outline: none;
+            font-size: 16px;
         }
+
+        .login-container input:focus {
+            box-shadow: 0 0 10px #6feaf6; /* Brilha em azul quando clica para digitar */
+        }
+
         .login-container button {
-            padding: 10px 20px;
+            padding: 12px 20px;
             background-color: #6feaf6;
+            color: #111;
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
             font-weight: bold;
+            font-size: 16px;
             cursor: pointer;
-            margin-top: 10px;
-            width: 85%;
+            width: 100%;
+            transition: all 0.3s ease; /* Deixa as animações suaves */
+        }
+
+        .login-container button:hover {
+            background-color: #4ecadc;
+            transform: scale(1.05); /* Dá uma leve crescidinha ao passar o mouse */
         }
     </style>
 </head>

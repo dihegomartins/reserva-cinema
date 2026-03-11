@@ -1,33 +1,39 @@
-# 🎬 CineMestre - Sistema de Reserva de Assentos
+# 🎬 CineMestre - Interface de Cinema Dinâmica
+![Demonstração do CineMestre](./frontend/assets/screenshot.png)
 
-![Status do Projeto](https://img.shields.io/badge/Status-Concluído-brightgreen)
-![Tecnologias](https://img.shields.io/badge/Stack-HTML5%20|%20CSS3%20|%20JavaScript-blue)
+O CineMestre é uma aplicação Full Stack que oferece uma experiência imersiva de login, com planos de fundo e frases que mudam dinamicamente consumindo dados reais do cinema.
 
-Um sistema web interativo para reserva de poltronas de cinema, desenvolvido com foco em manipulação avançada de **Matrizes (Arrays Bidimensionais)**, persistência de dados e arquitetura baseada em **MVC**.
+## 🚀 Tecnologias
+- **Frontend:** HTML5, CSS3, JavaScript (ES6+)
+- **Backend:** Node.js, Express
+- **APIs:** The Movie Database (TMDB) para imagens e API interna para frases.
+- **Segurança:** Dotenv para proteção de chaves de API.
 
-## 🚀 Funcionalidades
+## 📁 Estrutura do Projeto
+O projeto utiliza uma arquitetura de Monorepo organizada da seguinte forma:
+- `/frontend`: Contém toda a interface do usuário (HTML, CSS, JS do cliente).
+- `/backend`: Servidor Node.js, rotas da API e configurações de ambiente.
 
-* **Autenticação Simples:** Tela de login inicial com validação de nome de usuário e suporte a eventos de teclado (`Enter`).
-* **Mapeamento em Matriz:** O layout da sala de cinema é gerado de forma totalmente dinâmica através de uma matriz via JavaScript (onde `0 = Livre`, `1 = Ocupado`, `2 = Selecionado`).
-* **Persistência Local:** Utiliza a Web API `localStorage` para manter o usuário logado e os assentos salvos mesmo após o recarregamento da página (F5).
-* **Cálculo em Tempo Real:** Atualização dinâmica da quantidade de assentos no carrinho e valor total da compra.
-* **UX/UI:** Feedback visual imediato com CSS Grid e bloqueio de cliques em assentos já vendidos.
+## 🛠️ Como rodar o projeto localmente
 
-## 🏗️ Arquitetura e Padrões de Projeto (MVC)
+### 1. Pré-requisitos
+Você precisará do [Node.js](https://nodejs.org/) instalado em sua máquina.
 
-O projeto foi estruturado separando responsabilidades, facilitando a escalabilidade:
-* **Model (Dados):** A matriz `matrizCinema` atua como o banco de dados temporário, armazenando os estados das poltronas com complexidade de busca O(1).
-* **View (Interface):** Funções dedicadas unicamente a ler a matriz e renderizar o DOM (`desenharSala()`), aplicando as classes CSS correspondentes.
-* **Controller (Lógica):** Funções de negócio (`selecionarAssento()`) que interpretam o clique do usuário, alteram o Model e disparam a atualização da View.
+### 2. Configuração do Backend
+Abra o terminal na raiz do projeto e siga os passos:
 
-## 📁 Estrutura de Pastas
+```bash
+# Entre na pasta do servidor
+cd backend
 
-```text
-/
-├── index.html       # Tela principal (Sala de Cinema)
-├── login.html       # Tela de entrada e identificação
-├── css/
-│   └── style.css    # Estilos globais e CSS Grid da matriz
-└── js/
-    ├── app.js       # Lógica principal, MVC e manipulação de carrinho
-    └── login.js     # Lógica de validação e redirecionamento
+# Instale as dependências
+npm install
+
+# Crie um arquivo chamado .env na pasta /backend e adicione sua chave do TMDB:
+# TMDB_KEY=sua_chave_aqui
+
+### 3. Iniciando o Servidor
+Ainda dentro da pasta /backend, execute:
+node server.js
+
+O servidor iniciará em http://localhost:3000.
